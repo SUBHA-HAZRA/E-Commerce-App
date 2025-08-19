@@ -6,12 +6,10 @@ import { CounterContext } from "../Context/Counter";
 const ProductCard = ({ data }) => {
   const { count, setCount, cart, setCart } = useContext(CounterContext);
   const [isAdding, setIsAdding] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
 
   const Click = () => {
-    // Start animation
     setIsAdding(true);
-    
+
     const isAlreadyInCart = cart.find((item) => item.id === data.id);
 
     if (!isAlreadyInCart) {
@@ -26,31 +24,15 @@ const ProductCard = ({ data }) => {
 
     setCount(count + 1);
 
-    // Show success animation
-    setTimeout(() => {
-      setIsAdding(false);
-      setShowSuccess(true);
-      
-      // Hide success message after 2 seconds
-      setTimeout(() => {
-        setShowSuccess(false);
-      }, 2000);
-    }, 500);
+    // Add animation duration
+    setTimeout(() => setIsAdding(false), 500);
   };
 
-  // Check if item is in cart and get quantity
   const cartItem = cart.find((item) => item.id === data.id);
   const quantityInCart = cartItem ? cartItem.quantity : 0;
 
   return (
     <div className="w-full max-w-xs bg-white rounded-2xl border border-gray-200 shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col h-[500px] overflow-hidden relative">
-      
-      {/* Success Toast Alert */}
-      {showSuccess && (
-        <div className="absolute top-2 right-2 bg-green-500 text-white px-3 py-2 rounded-lg text-sm font-medium z-20 animate-bounce shadow-lg">
-          ✓ Added to Cart!
-        </div>
-      )}
 
       {/* Image Container */}
       <div className="h-64 w-full flex items-center justify-center bg-gray-100 p-4 relative">
@@ -59,13 +41,6 @@ const ProductCard = ({ data }) => {
           alt={data.title}
           className="object-contain max-h-full max-w-full hover:scale-105 transition-transform duration-300"
         />
-        
-        {/* Cart Quantity Badge */}
-        {quantityInCart > 0 && (
-          <div className="absolute top-2 right-2 bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold animate-pulse">
-            {quantityInCart}
-          </div>
-        )}
       </div>
 
       {/* Product Info */}
@@ -76,14 +51,14 @@ const ProductCard = ({ data }) => {
           </h3>
           <p className="text-xl font-bold text-gray-900 mb-4">${data.price.toFixed(2)}</p>
         </div>
-        
+
         <div className="flex flex-col sm:flex-row gap-2 mt-auto">
           <Link to={`/products/${data.id}`} className="flex-1">
             <button className="w-full border border-gray-300 bg-white text-gray-700 py-2 rounded-lg hover:bg-gray-100 transition-colors duration-200">
               View Details
             </button>
           </Link>
-          
+
           <button
             onClick={Click}
             disabled={isAdding}
@@ -112,7 +87,7 @@ const ProductCard = ({ data }) => {
         </div>
       </div>
 
-      {/* Floating Animation Particles (when adding to cart) */}
+      {/* Floating Animation Particles */}
       {isAdding && (
         <>
           {[...Array(6)].map((_, i) => (
