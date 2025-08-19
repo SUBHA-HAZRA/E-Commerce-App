@@ -1,12 +1,52 @@
-# React + Vite
+# 🛍️ E‑Commerce App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React + Vite storefront with product browsing, search, product detail pages, a shopping cart, and a simple checkout confirmation. Styled with Tailwind CSS and navigated via React Router.
 
-Currently, two official plugins are available:
+Live site : https://e-commerce-app-peach-omega.vercel.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
+- Product listing grid and individual product details
+- Search results page for quick discovery
+- Add/remove/update items in cart with subtotal
+- Checkout confirmation screen
+- Responsive UI, accessible components
+- Icons via lucide-react and React Icons
 
-## Expanding the ESLint configuration
+## 🧰 Tech Stack
+- React 19, React DOM 19
+- React Router DOM 7
+- Vite 7
+- Tailwind CSS 4 (+ @tailwindcss/vite)
+- lucide-react, React Icons
+- ESLint 9
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📁 Project Structure
+```
+src/
+├─ assets/
+│  └─ react.svg
+├─ Components/
+│  ├─ Cartitems.jsx          # List of cart items / quantity controls
+│  ├─ Footer.jsx
+│  ├─ Navbar.jsx             # Navigation + cart badge
+│  └─ ProductCard.jsx        # Product preview card
+├─ Context/
+│  └─ Counter.jsx            # App context (e.g., cart/quantity or shared state)
+├─ layout/                   # Layout wrappers (if used)
+├─ Pages/
+│  ├─ Cart.jsx               # Cart page
+│  ├─ CheckoutConfirmation.jsx
+│  ├─ Home.jsx               # Hero/featured + categories
+│  ├─ ProductDetails.jsx     # Single product page
+│  ├─ Products.jsx           # Product grid/catalog
+│  └─ SearchResults.jsx      # Search results page
+├─ App.css
+├─ App.jsx                   # Routes
+├─ index.css                 # Tailwind base styles
+└─ main.jsx                  # App entry
+```
+## 🛒 State & Data
+- Cart operations handled via context (see src/Context/Counter.jsx) or local state.
+- Persist cart to localStorage for a better UX (optional).
+- Utility helpers recommended for price formatting and totals.
+
