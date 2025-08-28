@@ -7,12 +7,15 @@ import Products from "./Pages/Products";
 import ProductDetails from "./Pages/ProductDetails";
 import Cart from "./Pages/Cart";
 import CheckoutConfirmation from "./Pages/CheckoutConfirmation";
+import ScrollToTop from "./Components/ScrollToTop";
 
 function App() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Header */}
       <Navbar />
+
+      <ScrollToTop/>
 
       {/* Main Content */}
       <main className="flex-grow">
